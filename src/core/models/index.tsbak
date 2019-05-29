@@ -1,0 +1,8 @@
+import { model, pageModel } from './common';
+import App from './app';
+
+export {
+  model,
+  pageModel,
+  App,
+};

@@ -1,0 +1,26 @@
+.editable_row_operations {
+  min-width: 180px;
+}
+.editable_row_operations button {
+  margin-right: 5px;
+}
+.addrow {
+  height: 40px;
+  line-height: 40px;
+}
+.addrow button {
+  margin-right: 5px;
+}
+th.colorCell {
+  margin: 0!important;
+  padding: 0!important;
+  border: none!important;
+}
+td.colorCell {
+  margin: 0!important;
+  padding: 0!important;
+  border: none!important;
+}
+td.colorCell tr td:last-child {
+  border-right: none!important;
+}

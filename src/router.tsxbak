@@ -1,0 +1,188 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Switch, Route, Redirect, routerRedux } from 'dva/router';
+import dynamic from 'dva/dynamic';
+import App from 'core/app';
+
+const { ConnectedRouter } = routerRedux;
+
+const Routers = function ({ history, app }) {
+  const error = dynamic({
+    app,
+    component: () => import('./modules/error/views'),
+  });
+  const index = dynamic({
+    app,
+    component: () => import('./modules/index/views'),
+  });
+  const routes = [
+    {
+      path: '/changePassword',
+      models: () => [import('./modules/login/models/changePassword')],
+      component: () => import('./modules/login/views/changePassword'),
+    },
+    {
+      path: '/switchUnit',
+      models: () => [import('modules/login/models/switchBusinessUnit')],
+      component: () => import('modules/login/views/switchUnit'),
+    },
+    {
+      path: '/switchTenant',
+      models: () => [import('modules/login/models/switchTenant')],
+      component: () => import('modules/login/views/switchTenant'),
+    },
+    {
+      path: '/company/create', //
+      models: () => [import('./modules/company/models/company')],
+      component: () => import('./modules/company/views/create'),
+    },
+    {
+      path: '/company/edit/:id', //
+      models: () => [import('./modules/company/models/company')],
+      component: () => import('./modules/company/views/edit'),
+    },
+    {
+      path: '/company',
+      models: () => [import('./modules/company/models/company')],
+      component: () => import('./modules/company/views/index'),
+    },
+    {
+      path: '/employeeSystem/employeeOperateLog',
+      models: () => [import('./modules/employeeSystem/models/employeeOperateLog')],
+      component: () => import('./modules/employeeSystem/views/employeeOperateLog'),
+    },
+    {
+      path: '/employee/loginLog',
+      models: () => [import('./modules/employee/models/loginLog')],
+      component: () => import('./modules/employee/views/loginLog'),
+    },
+    {
+      path: '/employeeSystem/changePassword',
+      models: () => [import('./modules/employeeSystem/models/changePassword')],
+      component: () => import('./modules/employeeSystem/views/changePassword'),
+    },
+    {
+      path: '/businessunitmanage',
+      models: () => [import('./modules/businessUnitManage/models/businessUnit')],
+      component: () => import('./modules/businessUnitManage/views/index'),
+    },
+    {
+      path: '/businessunitmanage/create',
+      models: () => [import('./modules/businessUnitManage/models/businessUnit')],
+      component: () => import('./modules/businessUnitManage/views/businessUnitCreate'),
+    },
+    {
+      path: '/businessunitmanage/edit/:id',
+      models: () => [import('./modules/businessUnitManage/models/businessUnit')],
+      component: () => import('./modules/businessUnitManage/views/businessUnitEdit'),
+    },
+    {
+      path: '/businessunitmanage/detail/:id',
+      models: () => [import('./modules/businessUnitManage/models/businessUnit')],
+      component: () => import('./modules/businessUnitManage/views/businessUnitDetail'),
+    },
+    {
+      path: '/employee',
+      models: () => [import('./modules/employee/models/employee')],
+      component: () => import('./modules/employee/views/index'),
+    },
+    {
+      path: '/employee/detail/:id',
+      models: () => [import('./modules/employee/models/employee')],
+      component: () => import('./modules/employee/views/detail'),
+    },
+    {
+      path: '/employee/edit/:id',
+      models: () => [import('./modules/employee/models/employee')],
+      component: () => import('./modules/employee/views/edit'),
+    },
+    {
+      path: '/employee/create',
+      models: () => [import('./modules/employee/models/employee')],
+      component: () => import('./modules/employee/views/create'),
+    },
+    {
+      path: '/employee/permission/:id',
+      models: () => [import('./modules/employee/models/employee')],
+      component: () => import('./modules/employee/views/permission'),
+    },
+    {
+      path: '/login',
+      models: () => [import('modules/login/models/login')],
+      component: () => import('modules/login/views'),
+    },
+    {
+      path: '/employeeSystem/organization/list',
+      models: () => [import('./modules/employeeSystem/models/organization')],
+      component: () => import('./modules/employeeSystem/views/organization'),
+    },
+    {
+      path: '/employeeSystem/organization/create',
+      models: () => [import('./modules/employeeSystem/models/organization')],
+      component: () => import('./modules/employeeSystem/views/organizationCreate'),
+    },
+    {
+      path: '/employeeSystem/organization/Edit/:id',
+      models: () => [import('./modules/employeeSystem/models/organization')],
+      component: () => import('./modules/employeeSystem/views/organizationEdit'),
+    },
+    {
+      path: '/role',
+      models: () => [import('./modules/role/models/role')],
+      component: () => import('./modules/role/views/index'),
+    },
+    {
+      path: '/role/create/:systemCode',
+      models: () => [import('./modules/role/models/role')],
+      component: () => import('./modules/role/views/roleCreate'),
+    },
+    {
+      path: '/role/edit/:id',
+      models: () => [import('./modules/role/models/role')],
+      component: () => import('./modules/role/views/roleEdit'),
+    },
+    {
+      path: '/tenant',
+      models: () => [],
+      component: () => import('./modules/tenantManage/views'),
+    },
+    {
+      path: '/tenant/:id',
+      models: () => [],
+      component: () => import('./modules/tenantManage/views/detail'),
+    },
+  ];
+
+
+
+  return (
+    <ConnectedRouter history={history}>
+      <App>
+        <Switch>
+        <Route exact component={index} path="/"/>
+          {
+
+            routes.map(({ path, ...dynamics }, key) => (
+              <Route key={key}
+                exact
+                path={path}
+                component={dynamic({
+                  app,
+                  ...dynamics,
+                })}
+              />
+            ))
+          }
+          <Route component={error} />
+        </Switch>
+      </App>
+    </ConnectedRouter>
+  );
+};
+
+Routers.propTypes = {
+  history: PropTypes.object,
+  app: PropTypes.object,
+};
+
+export default Routers;

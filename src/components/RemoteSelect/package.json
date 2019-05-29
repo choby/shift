@@ -1,0 +1,6 @@
+{
+  "name": "RemoteSelect",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./RemoteSelect.tsx"
+}
