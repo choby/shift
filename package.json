@@ -38,7 +38,7 @@
     "react-addons-linked-state-mixin": "^15.6.2",
     "react-adsense": "^0.0.3",
     "react-countup": "^3.0.2",
-    "react-draft-wysiwyg": "^1.10.12",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-helmet": "^5.2.0",
     "react-highcharts": "^13.0.0",
     "react-intl": "^2.4.0",
