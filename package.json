@@ -25,7 +25,7 @@
     "jsonp": "^0.2.1",
     "less": "^3.8.1",
     "less-vars-to-js": "1.2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "mockjs": "^1.0.1-beta3",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^2.1.0",
